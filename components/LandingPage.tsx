@@ -1,4 +1,4 @@
-// import { FaArrowUpLong } from "react-icons/fa6";
+import { FaArrowUp } from "react-icons/fa6";
 
 function LandingPage() {
   return (
@@ -23,12 +23,12 @@ function LandingPage() {
             {text}
           </div>
         ))}
-        <div className="start">
-          <div className="uppercase font-neue text-[15px] leading-none px-5 py-2 border-2 border-zinc-500 rounded-full tracking-wide">
+        <div className="start flex items-center gap-2 group cursor-pointer">
+          <div className="group-hover:bg-white group-hover:text-zinc-900 transition-all duration-300 uppercase font-neue text-[15px] leading-none px-5 py-2 border-[1px] border-zinc-400 rounded-full tracking-wide">
             Start The Project
           </div>
-          <div className="w-3 h-3 rounded-full">
-            {/* <FaArrowUpLong /> */}
+          <div className="w-9 h-9 flex items-center justify-center rotate-45 rounded-full border-[1px] border-zinc-400 group-hover:bg-white group-hover:text-zinc-900 transition-all duration-300">
+            <FaArrowUp />
           </div>
         </div>
       </div>
