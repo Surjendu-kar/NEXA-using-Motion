@@ -4,12 +4,14 @@ function LandingPage() {
   return (
     <div className="w-full h-screen pt-1">
       {/* Text Structure */}
-      <div className="textstructure mt-44 px-20">
+      <div className="textstructure mt-44 px-5 lg:px-20">
         {["we create", "eye-opening", "presentations"].map((text, index) => (
           <div className="masker" key={index}>
             <div className="w-fit flex items-center gap-2">
-              {index === 1 && <div className="relative top-2 w-[9vw] h-[5.5vw] bg-red-50 rounded-md"></div>}
-              <h1 className="text-[145px] font-grotesk uppercase leading-[6.8vw]">
+              {index === 1 && (
+                <div className="relative top-1 lg:top-2 w-[10vw] h-[7.2vw] lg:w-[9vw] lg:h-[5.5vw] bg-red-50 rounded-sm lg:rounded-md"></div>
+              )}
+              <h1 className="text-5xl md:text-[100px] lg:text-[145px] font-grotesk uppercase leading-[10vw] md:leading-[9vw] lg:leading-[6.8vw]">
                 {text}
               </h1>
             </div>
