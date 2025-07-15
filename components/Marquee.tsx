@@ -12,10 +12,10 @@ function Marquee() {
           className="flex flex-shrink-0"
         >
           <h1 className="text-[24vw] leading-[15vw] pb-9 uppercase font-grotesk pr-20">
-            we are ochi
+            Let's build together
           </h1>
           <h1 className="text-[24vw] leading-[15vw] pb-9 uppercase font-grotesk pr-20">
-            we are ochi
+            Let's build together
           </h1>
         </motion.div>
         <motion.div
@@ -25,10 +25,10 @@ function Marquee() {
           className="flex flex-shrink-0"
         >
           <h1 className="text-[24vw] leading-[15vw] pb-9 uppercase font-grotesk pr-20">
-            we are ochi
+            Let's build together
           </h1>
           <h1 className="text-[24vw] leading-[15vw] pb-9 uppercase font-grotesk pr-20">
-            we are ochi
+            Let's build together
           </h1>
         </motion.div>
       </div>

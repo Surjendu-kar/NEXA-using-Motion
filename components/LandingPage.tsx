@@ -5,7 +5,7 @@ function LandingPage() {
     <div className="w-full h-auto lg:h-screen pt-1">
       {/* Text Structure */}
       <div className="textstructure mt-40 px-5 lg:px-20">
-        {["we create", "eye-opening", "presentations"].map((text, index) => (
+        {["we build", "digital presence", "for brands"].map((text, index) => (
           <div className="masker" key={index}>
             <div className="w-fit flex items-center gap-2">
               {index === 1 && (
@@ -22,8 +22,8 @@ function LandingPage() {
       {/* border */}
       <div className="border-t-[1px] border-zinc-800 mt-40 flex items-center justify-between py-4 px-20">
         {[
-          "For public and private companies",
-          "From the first pitch to IPO",
+          "For startups and established businesses",
+          "From concept to launch",
         ].map((text, index) => (
           <div className="text-[1.1vw] leading-6 font-neue" key={index}>
             {text}
