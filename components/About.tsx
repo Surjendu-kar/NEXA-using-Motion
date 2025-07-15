@@ -20,7 +20,7 @@ function About() {
           </button>
         </div>
 
-        <div className="w-1/2 h-[469px] bg-[#99ad537e] rounded-3xl"></div>
+        <div className="w-1/2 h-[469px] bg-[#99ad536c] rounded-3xl"></div>
       </div>
     </div>
   );

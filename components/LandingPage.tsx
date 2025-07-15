@@ -9,7 +9,7 @@ function LandingPage() {
           <div className="masker" key={index}>
             <div className="w-fit flex items-center gap-2">
               {index === 1 && (
-                <div className="relative top-1 lg:top-2 w-[10vw] h-[7.2vw] lg:w-[9vw] lg:h-[5.5vw] bg-red-50 rounded-sm lg:rounded-md"></div>
+                <div className="relative top-1 lg:top-2 w-[10vw] h-[7.2vw] lg:w-[9vw] lg:h-[5.5vw] bg-zinc-50 rounded-sm lg:rounded-md"></div>
               )}
               <h1 className="text-5xl md:text-[100px] lg:text-[9vw] font-grotesk uppercase leading-[10vw] md:leading-[9vw] lg:leading-[6.8vw]">
                 {text}
