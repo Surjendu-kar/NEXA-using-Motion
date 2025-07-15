@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        neue: ["Neue Montreal"],
+        neue: ["var(--font-neue)"],
+        grotesk: ["var(--font-grotesk)"],
       },
     },
   },

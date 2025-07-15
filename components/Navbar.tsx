@@ -1,6 +1,13 @@
 function Navbar() {
+  const navItems = [
+    "Services",
+    "Our works",
+    "about us",
+    "insights",
+    "contact us",
+  ];
   return (
-    <div className="w-full px-20 py-8 flex items-center justify-between">
+    <div className="fixed z-[999] w-full px-20 py-8 flex items-center justify-between">
       <div className="logo">
         <svg
           width="72"
@@ -33,17 +40,17 @@ function Navbar() {
       </div>
 
       <div className="links flex gap-10">
-        {["Services", "Our works", "about us", "insights"].map(
-          (item, index) => (
-            <a
-              className="text-[17px] font-normal capitalize"
-              key={index}
-              href={`/${item}`}
-            >
-              {item}
-            </a>
-          )
-        )}
+        {navItems.map((item, index) => (
+          <a
+            className={`text-md font-neue font-normal capitalize ${
+              index === navItems.length - 1 && "ml-32"
+            }`}
+            key={index}
+            href={`/${item}`}
+          >
+            {item}
+          </a>
+        ))}
       </div>
     </div>
   );
