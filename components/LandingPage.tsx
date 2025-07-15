@@ -6,7 +6,7 @@ function LandingPage() {
       {/* Text Structure */}
       <div className="textstructure mt-44 px-5 lg:px-20">
         {["we create", "eye-opening", "presentations"].map((text, index) => (
-          <div className="masker overflow-hidden" key={index}>
+          <div className="masker" key={index}>
             <div className="w-fit flex items-center gap-2">
               {index === 1 && (
                 <div className="relative top-1 lg:top-2 w-[10vw] h-[7.2vw] lg:w-[9vw] lg:h-[5.5vw] bg-red-50 rounded-sm lg:rounded-md"></div>
