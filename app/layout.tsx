@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const neue = localFont({
+  src: "./fonts/NeueMontreal-Regular.ttf",
+  display: "swap",
+  variable: "--font-neue",
+});
 
 export const metadata: Metadata = {
   title: "AnimatedWeb",
@@ -15,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={neue.variable}>
+      <body>{children}</body>
     </html>
   );
 }
