@@ -1,4 +1,6 @@
+"use client";
 import { FaArrowUp } from "react-icons/fa6";
+import { motion } from "motion/react";
 
 function LandingPage() {
   return (
@@ -9,11 +11,25 @@ function LandingPage() {
           <div className="masker" key={index}>
             <div className="w-fit flex items-center gap-2">
               {index === 1 && (
-                <div className="relative top-1 lg:top-2 w-[10vw] h-[7.2vw] lg:w-[9vw] lg:h-[5.5vw] bg-zinc-50 rounded-sm lg:rounded-md"></div>
+                <motion.div
+                  initial={{ x: "-100vw", opacity: 0 }}
+                  animate={{ x: "0", opacity: 1 }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  className="relative top-1 lg:top-2 w-[10vw] h-[7.2vw] lg:w-[9vw] lg:h-[5.5vw] bg-zinc-50 rounded-sm lg:rounded-md"
+                ></motion.div>
               )}
-              <h1 className="text-5xl md:text-[100px] lg:text-[9vw] font-grotesk uppercase leading-[10vw] md:leading-[9vw] lg:leading-[6.8vw]">
+              <motion.h1
+                initial={{
+                  x: index === 1 ? "-9.5vw" : 0,
+                }}
+                animate={{
+                  x: index === 1 ? 0 : 0,
+                }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                className="text-5xl md:text-[100px] lg:text-[9vw] font-grotesk uppercase leading-[10vw] md:leading-[9vw] lg:leading-[6.8vw]"
+              >
                 {text}
-              </h1>
+              </motion.h1>
             </div>
           </div>
         ))}
