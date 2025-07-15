@@ -42,7 +42,7 @@ function Navbar() {
       <div className="links flex gap-10">
         {navItems.map((item, index) => (
           <a
-            className={`text-md font-neue font-normal capitalize ${
+            className={`text-[1.1vw] font-neue font-normal capitalize ${
               index === navItems.length - 1 && "ml-32"
             }`}
             key={index}
