@@ -1,4 +1,11 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { useState } from "react";
+
 function Featured() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   const cardList = [
     {
       title: "Salience Labs",
@@ -20,6 +27,16 @@ function Featured() {
       imgSrc:
         "https://ochi.design/wp-content/uploads/2025/02/Fyde_Front-1-1326x1101.png",
     },
+    {
+      title: "Vise",
+      imgSrc:
+        "https://ochi.design/wp-content/uploads/2025/02/Vise_Front-1-1326x1101.png",
+    },
+    {
+      title: "All Things Go",
+      imgSrc:
+        "https://ochi.design/wp-content/uploads/2025/02/ATG_Website_1-1326x1101.png",
+    },
   ];
   return (
     <div className="w-full py-20 ">
@@ -31,10 +48,40 @@ function Featured() {
       </div>
 
       {/* cards */}
-      <div className="cards w-full flex flex-wrap gap-10 px-16 pt-10">
+      <div className="cards w-full flex flex-wrap gap-10 px-16 pt-10 relative">
+        <h1
+          className="absolute flex overflow-hidden text-[#CDEA68] z-[9] text-8xl leading-none font-grotesk left-1/2 -translate-x-1/2 -translate-y-1/2"
+          style={{
+            top:
+              hoveredIndex !== null
+                ? `${
+                    ((Math.floor(hoveredIndex / 2) + 0.5) /
+                      Math.ceil(cardList.length / 2)) *
+                    100
+                  }%`
+                : "50%",
+            opacity: hoveredIndex !== null ? 1 : 0,
+          }}
+        >
+          {hoveredIndex !== null &&
+            cardList[hoveredIndex].title.split("").map((char, i) => (
+              <motion.span
+                key={i}
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{ ease: [0.22, 1, 0.36, 1], delay: i * 0.05 }}
+                className="inline-block"
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+        </h1>
+
         {cardList.map((card, index) => (
           <div
             key={index}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
             className="cardcontainer group h-[600px] overflow-hidden"
             style={{ width: "calc(50% - 20px)" }}
           >
