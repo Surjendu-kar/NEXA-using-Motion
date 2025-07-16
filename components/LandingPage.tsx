@@ -1,6 +1,18 @@
 "use client";
-import { FaArrowUp } from "react-icons/fa6";
 import { motion } from "motion/react";
+
+const pathVariants = {
+  hidden: { opacity: 0, pathLength: 0 },
+  visible: {
+    opacity: 1,
+    pathLength: 1,
+    transition: {
+      delay: 1.3,
+      duration: 1,
+      ease: "easeInOut" as const,
+    },
+  },
+};
 
 function LandingPage() {
   return (
@@ -15,7 +27,7 @@ function LandingPage() {
                   initial={{ x: "-100vw", opacity: 0 }}
                   animate={{ x: "0", opacity: 1 }}
                   transition={{ duration: 0.8, ease: "easeInOut" }}
-                  className="relative top-1 lg:top-2 w-[10vw] h-[7.2vw] lg:w-[9vw] lg:h-[5.5vw] bg-zinc-50 rounded-sm lg:rounded-md"
+                  className="relative top-1 lg:top-2 w-[10vw] h-[7.2vw] lg:w-[9vw] lg:h-[5.7vw] bg-zinc-50 rounded-sm lg:rounded-md"
                 ></motion.div>
               )}
               <motion.h1
@@ -36,7 +48,26 @@ function LandingPage() {
       </div>
 
       {/* border */}
-      <div className="border-t-[1px] border-zinc-800 mt-40 flex items-center justify-between py-4 px-20">
+      <motion.div
+        initial={{
+          width: "0%",
+        }}
+        animate={{
+          width: "100%",
+        }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+        className="border-t-[1px] border-zinc-800 mt-40"
+      />
+
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: "100vw",
+        }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+        className="flex items-center justify-between py-4 px-20"
+      >
         {[
           "For startups and established businesses",
           "From concept to launch",
@@ -46,14 +77,61 @@ function LandingPage() {
           </div>
         ))}
         <div className="start flex items-center gap-2 group cursor-pointer">
-          <div className="group-hover:bg-white group-hover:text-zinc-900 transition-all duration-300 uppercase font-neue text-[1vw] leading-none px-5 py-2 border-[1px] border-zinc-400 rounded-full tracking-wide">
+          <motion.div
+            initial={{
+              x: "20%",
+            }}
+            animate={{
+              x: 0,
+            }}
+            transition={{
+              delay: 0.2,
+              duration: 0.8,
+              ease: "easeInOut",
+            }}
+            className="group-hover:bg-white group-hover:text-zinc-900 transition-all duration-300 uppercase font-neue text-[1vw] leading-none px-5 py-2 border-[1px] border-zinc-400 rounded-full tracking-wide"
+          >
             Start The Project
-          </div>
-          <div className="w-9 h-9 flex items-center justify-center rotate-45 rounded-full border-[1px] border-zinc-400 group-hover:bg-white group-hover:text-zinc-900 transition-all duration-300">
-            <FaArrowUp />
-          </div>
+          </motion.div>
+          <motion.div
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            transition={{
+              delay: 1,
+              duration: 0.8,
+              ease: "easeInOut",
+            }}
+            className="w-9 h-9 flex items-center justify-center rotate-45 rounded-full border-[1px] border-zinc-400 group-hover:bg-white group-hover:text-zinc-900 transition-all duration-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="1.2em"
+              height="1.2em"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <motion.path
+              variants={pathVariants}
+              initial='hidden'
+              animate='visible'
+              d="M12 19V5" />
+              <motion.path
+              variants={pathVariants}
+              initial='hidden'
+              animate='visible'
+              d="M5 12l7-7 7 7" />
+            </svg>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
