@@ -18,7 +18,7 @@ function LandingPage() {
   return (
     <div className="w-full h-auto lg:h-screen pt-1">
       {/* Text Structure */}
-      <div className="textstructure mt-40 px-5 lg:px-20">
+      <div className="textstructure mt-40 px-5 lg:px-16">
         {["we build", "digital presence", "for brands"].map((text, index) => (
           <div className="masker" key={index}>
             <div className="w-fit flex items-center gap-2">
@@ -66,7 +66,7 @@ function LandingPage() {
         }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeInOut" }}
-        className="flex items-center justify-between py-4 px-20"
+        className="flex items-center justify-between py-4 px-16"
       >
         {[
           "For startups and established businesses",

@@ -1,5 +1,6 @@
 import About from "@/components/About";
 import Eyes from "@/components/Eyes";
+import Featured from "@/components/Featured";
 import LandingPage from "@/components/LandingPage";
 import Marquee from "@/components/Marquee";
 import Navbar from "@/components/Navbar";
@@ -12,6 +13,7 @@ function page() {
       <Marquee />
       <About />
       <Eyes />
+      <Featured/>
     </div>
   );
 }
