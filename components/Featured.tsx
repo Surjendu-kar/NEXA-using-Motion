@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
 function Featured() {
@@ -11,37 +11,43 @@ function Featured() {
       title: "Salience Labs",
       imgSrc:
         "https://ochi.design/wp-content/uploads/2025/02/Salience_Website_cover-1326x1101.png",
+      tags: ["brand identity", "pitch deck"],
     },
     {
       title: "Cardboard Spaceship",
       imgSrc:
         "https://ochi.design/wp-content/uploads/2024/08/CS_Website_1-1326x1101.png",
+      tags: ["branded template", "sales deck", "social media templates"],
     },
     {
       title: "AH2 & Matt Horn",
       imgSrc:
         "https://ochi.design/wp-content/uploads/2024/08/Frame-481692-1-1326x1101.png",
+      tags: ["pitch deck"],
     },
     {
       title: "Fyde",
       imgSrc:
         "https://ochi.design/wp-content/uploads/2025/02/Fyde_Front-1-1326x1101.png",
+      tags: ["audit", "copy writing", "sales deck", "Slides design"],
     },
     {
       title: "Vise",
       imgSrc:
         "https://ochi.design/wp-content/uploads/2025/02/Vise_Front-1-1326x1101.png",
+      tags: ["agency", "company presentation"],
     },
     {
       title: "All Things Go",
       imgSrc:
         "https://ochi.design/wp-content/uploads/2025/02/ATG_Website_1-1326x1101.png",
+      tags: ["brand identity", "pitch deck"],
     },
   ];
   return (
     <div className="w-full py-20 ">
       <div className="w-full px-16 border-b-[1px] pb-10 border-zinc-700">
-        {/* heading */}
+        {/*Top heading */}
         <h1 className="text-[55px] leading-none  font-neue">
           Featured projects
         </h1>
@@ -49,8 +55,9 @@ function Featured() {
 
       {/* cards */}
       <div className="cards w-full flex flex-wrap gap-10 px-16 pt-10 relative">
+        {/* center heading */}
         <h1
-          className="absolute flex overflow-hidden text-[#CDEA68] z-[9] text-8xl leading-none font-grotesk left-1/2 -translate-x-1/2 -translate-y-1/2"
+          className="absolute flex overflow-hidden text-[#CDEA68] z-[9] text-8xl leading-none font-grotesk left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none h-[96px]"
           style={{
             top:
               hoveredIndex !== null
@@ -60,44 +67,69 @@ function Featured() {
                     100
                   }%`
                 : "50%",
-            opacity: hoveredIndex !== null ? 1 : 0,
           }}
         >
-          {hoveredIndex !== null &&
-            cardList[hoveredIndex].title.split("").map((char, i) => (
-              <motion.span
-                key={i}
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                transition={{ ease: [0.22, 1, 0.36, 1], delay: i * 0.05 }}
-                className="inline-block"
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
+          <AnimatePresence>
+            {hoveredIndex !== null &&
+              cardList[hoveredIndex].title.split("").map((char, i) => (
+                <motion.span
+                  key={hoveredIndex + char + i}
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "100%", transition: { duration: 0 } }}
+                  transition={{ ease: [0.22, 1, 0.36, 1], delay: i * 0.05 }}
+                  className="inline-block"
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+          </AnimatePresence>
         </h1>
 
         {cardList.map((card, index) => (
           <div
             key={index}
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
-            className="cardcontainer group h-[600px] overflow-hidden"
+            className="cardcontainer h-[600px] overflow-hidden cursor-pointer"
             style={{ width: "calc(50% - 20px)" }}
           >
             <div className="card w-full h-full flex flex-col gap-4 rounded-xl ">
+              {/* title */}
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-zinc-100 rounded-full" />
                 <h1 className="text-[15px] font-neue uppercase">
                   {card.title}
                 </h1>
               </div>
-              <div className="w-full flex-1 rounded-xl overflow-hidden transition-transform duration-500 ease-in-out group-hover:scale-[0.95]">
-                <img
-                  className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+
+              {/* image */}
+              <motion.div
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className="w-full flex-1 rounded-xl overflow-hidden"
+                animate={{ scale: hoveredIndex === index ? 0.95 : 1 }}
+                transition={{ ease: "easeInOut", duration: 0.5 }}
+              >
+                <motion.img
+                  animate={{
+                    scale: hoveredIndex === index ? 1.1 : 1,
+                  }}
+                  transition={{ ease: "easeInOut", duration: 0.5 }}
+                  className="w-full h-full object-cover"
                   src={card.imgSrc}
                   alt="Featured Project"
                 />
+              </motion.div>
+
+              {/* tags */}
+              <div className="flex items-center gap-2">
+                {card.tags.map((tag, i) => (
+                  <div
+                    key={i}
+                    className="cursor-pointer hover:bg-white hover:text-zinc-900 transition-all duration-300 uppercase font-neue text-[0.9vw] leading-none px-4 py-2 border-[1px] border-zinc-400 rounded-full tracking-wide"
+                  >
+                    {tag}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
