@@ -21,15 +21,15 @@ function LandingPage() {
       <div className="textstructure mt-40 px-5 lg:px-14">
         {["we build", "digital presence", "for brands"].map((text, index) => (
           <div className="masker" key={index}>
-            <div className="w-fit flex items-center gap-2">
+            <div className="w-fit flex items-center gap-3">
               {index === 1 && (
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: "9vw" }}
                   transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-                  className="overflow-hidden relative top-1 lg:top-2 w-[10vw] h-[7.2vw] lg:w-[9vw] lg:h-[5.7vw] bg-zinc-50 rounded-sm lg:rounded-md"
+                  className="overflow-hidden relative top-1 left-1 lg:top-2 w-[10vw] h-[7.2vw] lg:w-[9vw] lg:h-[5.7vw]  rounded-sm lg:rounded-md"
                 >
-                  
+                  <img src="./nexa.webp" alt="" className="w-full h-full object-cover"/>
                 </motion.div>
               )}
               <motion.h1 className="text-5xl md:text-[100px] lg:text-[9vw] font-grotesk uppercase leading-[10vw] md:leading-[9vw] lg:leading-[6.8vw]">
