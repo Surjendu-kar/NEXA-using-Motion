@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
 const pathVariants = {
   hidden: { opacity: 0, pathLength: 0 },
@@ -15,6 +16,28 @@ const pathVariants = {
 };
 
 function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 20);
+
+      if (currentScrollY > 50 && currentScrollY > lastScrollY.current) {
+        setIsNavbarVisible(false);
+      } else {
+        setIsNavbarVisible(true);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const navItems = [
     "Services",
     "Our works",
@@ -23,7 +46,11 @@ function Navbar() {
     "contact us",
   ];
   return (
-    <div className="fixed z-[999] w-full px-5 lg:px-14 py-8 flex items-center justify-between">
+    <div
+      className={`fixed z-[999] w-full px-5 lg:px-14 py-6 flex items-center justify-between transition-all duration-300 ${
+        isScrolled ? "bg-zinc-900/50 backdrop-blur-md" : ""
+      } ${isNavbarVisible ? "top-0" : "-top-full"}`}
+    >
       <div className="logo">
         <svg
           width="70"
