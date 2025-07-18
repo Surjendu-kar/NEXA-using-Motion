@@ -45,7 +45,7 @@ function Featured() {
     },
   ];
   return (
-    <div className="w-full py-20 ">
+    <div data-scroll data-scroll-speed="0.1" className="w-full py-20 ">
       <div className="w-full px-14 border-b-[1px] pb-10 border-zinc-700">
         {/*Top heading */}
         <h1 className="text-[55px] leading-none  font-neue">

@@ -16,7 +16,11 @@ const pathVariants = {
 
 function LandingPage() {
   return (
-    <div className="w-full h-auto lg:h-screen pt-1">
+    <div
+      data-scroll
+      data-scroll-speed="-0.5"
+      className="w-full h-auto lg:h-screen pt-1"
+    >
       {/* Text Structure */}
       <div className="textstructure mt-40 px-5 lg:px-14">
         {["we build", "digital presence", "for brands"].map((text, index) => (
@@ -29,7 +33,11 @@ function LandingPage() {
                   transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
                   className="overflow-hidden relative top-1 left-1 lg:top-2 w-[10vw] h-[7.2vw] lg:w-[9vw] lg:h-[5.7vw]  rounded-sm lg:rounded-md"
                 >
-                  <img src="./nexa.webp" alt="" className="w-full h-full object-cover"/>
+                  <img
+                    src="./nexa.webp"
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
                 </motion.div>
               )}
               <motion.h1 className="text-5xl md:text-[100px] lg:text-[9vw] font-grotesk uppercase leading-[10vw] md:leading-[9vw] lg:leading-[6.8vw]">
