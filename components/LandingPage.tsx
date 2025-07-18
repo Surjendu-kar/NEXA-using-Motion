@@ -27,8 +27,10 @@ function LandingPage() {
                   initial={{ width: 0 }}
                   animate={{ width: "9vw" }}
                   transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-                  className="relative top-1 lg:top-2 w-[10vw] h-[7.2vw] lg:w-[9vw] lg:h-[5.7vw] bg-zinc-50 rounded-sm lg:rounded-md"
-                ></motion.div>
+                  className="overflow-hidden relative top-1 lg:top-2 w-[10vw] h-[7.2vw] lg:w-[9vw] lg:h-[5.7vw] bg-zinc-50 rounded-sm lg:rounded-md"
+                >
+                  
+                </motion.div>
               )}
               <motion.h1 className="text-5xl md:text-[100px] lg:text-[9vw] font-grotesk uppercase leading-[10vw] md:leading-[9vw] lg:leading-[6.8vw]">
                 {text}
