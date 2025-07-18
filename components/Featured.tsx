@@ -46,7 +46,7 @@ function Featured() {
   ];
   return (
     <div className="w-full py-20 ">
-      <div className="w-full px-16 border-b-[1px] pb-10 border-zinc-700">
+      <div className="w-full px-14 border-b-[1px] pb-10 border-zinc-700">
         {/*Top heading */}
         <h1 className="text-[55px] leading-none  font-neue">
           Featured projects
@@ -54,10 +54,10 @@ function Featured() {
       </div>
 
       {/* cards */}
-      <div className="cards w-full flex flex-wrap gap-10 px-16 pt-10 relative">
+      <div className="cards w-full flex flex-wrap gap-10 px-14 pt-10 relative">
         {/* center heading */}
         <h1
-          className="absolute flex overflow-hidden text-[#CDEA68] z-[9] text-8xl leading-none font-grotesk left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none h-[96px]"
+          className="absolute flex overflow-hidden text-[#CDEA68] z-[9] text-9xl leading-none font-grotesk left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none h-[115px]"
           style={{
             top:
               hoveredIndex !== null
@@ -89,7 +89,7 @@ function Featured() {
         {cardList.map((card, index) => (
           <div
             key={index}
-            className="cardcontainer h-[600px] overflow-hidden cursor-pointer"
+            className="cardcontainer h-[650px] overflow-hidden "
             style={{ width: "calc(50% - 20px)" }}
           >
             <div className="card w-full h-full flex flex-col gap-4 rounded-xl ">
@@ -105,7 +105,7 @@ function Featured() {
               <motion.div
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className="w-full flex-1 rounded-xl overflow-hidden"
+                className="w-full flex-1 rounded-xl overflow-hidden cursor-pointer"
                 animate={{ scale: hoveredIndex === index ? 0.95 : 1 }}
                 transition={{ ease: "easeInOut", duration: 0.5 }}
               >
