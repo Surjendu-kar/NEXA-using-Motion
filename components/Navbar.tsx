@@ -94,17 +94,40 @@ function Navbar() {
         </svg>
       </div>
 
-      <div className="links flex gap-10">
+      <div className="links flex gap-10 items-center">
         {navItems.map((item, index) => (
-          <a
-            className={`text-[1.1vw] font-neue font-normal capitalize ${
+          <motion.a
+            key={index}
+            href={`/${item.replace(" ", "-").toLowerCase()}`}
+            className={`relative text-[1.1vw] font-neue font-normal capitalize ${
               index === navItems.length - 1 && "ml-32"
             }`}
-            key={index}
-            href={`/${item}`}
+            whileHover="hover"
+            initial="rest"
           >
-            {item}
-          </a>
+            <div className="overflow-hidden relative">
+              <motion.span
+                className="inline-block"
+                variants={{ rest: { y: 0 }, hover: { y: "-100%" } }}
+                transition={{ ease: "easeInOut", duration: 0.3 }}
+              >
+                {item}
+              </motion.span>
+              <motion.span
+                className="absolute left-0 top-0"
+                variants={{ rest: { y: "100%" }, hover: { y: 0 } }}
+                transition={{ ease: "easeInOut", duration: 0.3 }}
+              >
+                {item}
+              </motion.span>
+            </div>
+            <motion.div
+              className="absolute bottom-[-5px] left-0 h-[1px] bg-white w-full"
+              style={{ originX: 0 }}
+              variants={{ rest: { scaleX: 0 }, hover: { scaleX: 1 } }}
+              transition={{ ease: "easeInOut", duration: 0.4 }}
+            />
+          </motion.a>
         ))}
       </div>
     </div>
