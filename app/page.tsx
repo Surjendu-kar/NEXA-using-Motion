@@ -8,9 +8,12 @@ import LandingPage from "@/components/LandingPage";
 import Marquee from "@/components/Marquee";
 import Navbar from "@/components/Navbar";
 import LocomotiveScroll from "locomotive-scroll";
+import { useEffect } from "react";
 
 function page() {
-  const locomotiveScroll = new LocomotiveScroll();
+  useEffect(() => {
+    const locomotiveScroll = new LocomotiveScroll();
+  }, []);
 
   return (
     <div className="w-full min-h-screen bg-zinc-900 text-white">
