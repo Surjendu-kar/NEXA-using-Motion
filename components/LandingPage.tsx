@@ -24,22 +24,13 @@ function LandingPage() {
             <div className="w-fit flex items-center gap-2">
               {index === 1 && (
                 <motion.div
-                  initial={{ x: "-100vw", opacity: 0 }}
-                  animate={{ x: "0", opacity: 1 }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  initial={{ width: 0 }}
+                  animate={{ width: "9vw" }}
+                  transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
                   className="relative top-1 lg:top-2 w-[10vw] h-[7.2vw] lg:w-[9vw] lg:h-[5.7vw] bg-zinc-50 rounded-sm lg:rounded-md"
                 ></motion.div>
               )}
-              <motion.h1
-                initial={{
-                  x: index === 1 ? "-9.5vw" : 0,
-                }}
-                animate={{
-                  x: index === 1 ? 0 : 0,
-                }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-                className="text-5xl md:text-[100px] lg:text-[9vw] font-grotesk uppercase leading-[10vw] md:leading-[9vw] lg:leading-[6.8vw]"
-              >
+              <motion.h1 className="text-5xl md:text-[100px] lg:text-[9vw] font-grotesk uppercase leading-[10vw] md:leading-[9vw] lg:leading-[6.8vw]">
                 {text}
               </motion.h1>
             </div>
@@ -119,15 +110,17 @@ function LandingPage() {
               strokeLinejoin="round"
             >
               <motion.path
-              variants={pathVariants}
-              initial='hidden'
-              animate='visible'
-              d="M12 19V5" />
+                variants={pathVariants}
+                initial="hidden"
+                animate="visible"
+                d="M12 19V5"
+              />
               <motion.path
-              variants={pathVariants}
-              initial='hidden'
-              animate='visible'
-              d="M5 12l7-7 7 7" />
+                variants={pathVariants}
+                initial="hidden"
+                animate="visible"
+                d="M5 12l7-7 7 7"
+              />
             </svg>
           </motion.div>
         </div>
