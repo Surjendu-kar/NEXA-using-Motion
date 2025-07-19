@@ -8,25 +8,49 @@ import LandingPage from "@/components/LandingPage";
 import Marquee from "@/components/Marquee";
 import Navbar from "@/components/Navbar";
 import LocomotiveScroll from "locomotive-scroll";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-function page() {
+function Page() {
+  const [count, setCount] = useState(0);
+  const [loadingComplete, setLoadingComplete] = useState(false);
+
   useEffect(() => {
-    const locomotiveScroll = new LocomotiveScroll();
+    const interval = setInterval(() => {
+      setCount((prevCount) => {
+        if (prevCount >= 100) {
+          clearInterval(interval);
+          setTimeout(() => setLoadingComplete(true), 500);
+          return 100;
+        }
+        return prevCount + 1;
+      });
+    }, 10);
+
+    return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (loadingComplete) {
+      const locomotiveScroll = new LocomotiveScroll();
+    }
+  }, [loadingComplete]);
 
   return (
     <div className="w-full min-h-screen bg-zinc-900 text-white">
-      <Navbar />
-      <LandingPage />
-      <Marquee />
-      <About />
-      <Eyes />
-      <Featured />
-      <Cards />
-      <Footer />
+      {loadingComplete && <Navbar />}
+      <LandingPage loadingComplete={loadingComplete} count={count} />
+      {loadingComplete && (
+        <>
+          <Marquee />
+          <About />
+          <Eyes />
+          <Featured />
+          <Cards />
+          <Footer />
+        </>
+      )}
     </div>
   );
 }
 
-export default page;
+export default Page;
