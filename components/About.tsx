@@ -23,7 +23,13 @@ function About() {
           </button>
         </div>
 
-        <div className="w-full lg:w-1/2 h-[300px] lg:h-[469px] bg-[#99ad536c] rounded-xl lg:rounded-3xl"></div>
+        <div className="w-full lg:w-1/2 h-[300px] lg:h-[469px] bg-[#99ad536c] rounded-xl lg:rounded-3xl overflow-hidden">
+          <img
+            src="./nexa.webp"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
     </div>
   );

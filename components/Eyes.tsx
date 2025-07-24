@@ -30,7 +30,7 @@ function Eyes() {
   }, []);
 
   return (
-    <div className="w-full h-screen overflow-hidden">
+    <div className="w-full h-[60vh] lg:h-screen overflow-hidden">
       <div
         data-scroll
         data-scroll-speed="-0.8"
