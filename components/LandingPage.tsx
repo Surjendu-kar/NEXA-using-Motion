@@ -1,5 +1,31 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
+// Custom hook to get current breakpoint
+function useBreakpoint() {
+  const [breakpoint, setBreakpoint] = useState("");
+
+  useEffect(() => {
+    function updateBreakpoint() {
+      const width = window.innerWidth;
+      if (width >= 1024) {
+        setBreakpoint("lg");
+      } else if (width >= 768) {
+        setBreakpoint("md");
+      } else {
+        setBreakpoint("sm");
+      }
+    }
+
+    // Set initial breakpoint immediately
+    updateBreakpoint();
+    window.addEventListener("resize", updateBreakpoint);
+    return () => window.removeEventListener("resize", updateBreakpoint);
+  }, []);
+
+  return breakpoint;
+}
 
 const pathVariants = {
   hidden: { opacity: 0, pathLength: 0 },
@@ -21,6 +47,68 @@ function LandingPage({
   loadingComplete: boolean;
   count: number;
 }) {
+  const breakpoint = useBreakpoint();
+
+  // Font sizes for each breakpoint
+  const initialFontSizes = {
+    lg: "7.8rem",
+    md: "5.5rem",
+    sm: "3rem",
+  };
+  const animateFontSizes = {
+    lg: "9rem",
+    md: "6rem",
+    sm: "3.5rem",
+  };
+  // Line heights for each breakpoint
+  const initialLineHeights = {
+    lg: "5.5rem",
+    md: "4rem",
+    sm: "2.5rem",
+  };
+  const animateLineHeights = {
+    lg: "6.5rem",
+    md: "4.5rem",
+    sm: "3rem",
+  };
+
+  const getFontSize = (sizes: any) => {
+    if (!breakpoint) {
+      // Return mobile-first approach when breakpoint is not yet determined
+      return sizes.sm;
+    }
+    if (breakpoint === "lg") return sizes.lg;
+    if (breakpoint === "md") return sizes.md;
+    return sizes.sm;
+  };
+
+  // Image sizes for each breakpoint
+  const imageWidths = {
+    lg: "10rem",
+    md: "8rem",
+    sm: "4.5rem",
+  };
+
+  const getImageWidth = () => {
+    if (!breakpoint) return imageWidths.sm;
+    if (breakpoint === "lg") return imageWidths.lg;
+    if (breakpoint === "md") return imageWidths.md;
+    return imageWidths.sm;
+  };
+
+  // Don't render until breakpoint is determined to avoid flash
+  if (!breakpoint) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, filter: "blur(10px)" }}
+        animate={{ opacity: 1, filter: "blur(0px)" }}
+        className="w-full h-screen  flex items-center justify-center"
+      >
+        {/* <div className="text-white">Loading...</div> */}
+      </motion.div>
+    );
+  }
+
   return (
     <div
       data-scroll
@@ -51,13 +139,13 @@ function LandingPage({
                 {index === 1 && (
                   <motion.div
                     initial={{ width: 0 }}
-                    animate={{ width: loadingComplete ? "9vw" : 0 }}
+                    animate={{ width: loadingComplete ? getImageWidth() : 0 }}
                     transition={{
                       duration: 1,
                       ease: [0.76, 0, 0.24, 1],
                       delay: loadingComplete ? 1 : 0,
                     }}
-                    className="overflow-hidden relative top-1 left-1 lg:top-2 w-[10vw] h-[7.2vw] lg:w-[9vw] lg:h-[5.7vw]  rounded-sm lg:rounded-md"
+                    className="overflow-hidden relative top-1 left-1 lg:top-2 w-[10vw] h-[2.5rem] md:h-[4rem] lg:w-[10rem] lg:h-[5.7vw] rounded-sm lg:rounded-md"
                   >
                     <img
                       src="./nexa.webp"
@@ -67,10 +155,16 @@ function LandingPage({
                   </motion.div>
                 )}
                 <motion.h1
-                  initial={{ fontSize: "7.5vw", lineHeight: "5.8vw" }}
-                  animate={{ fontSize: "9vw", lineHeight: "6.8vw" }}
+                  initial={{
+                    fontSize: getFontSize(initialFontSizes),
+                    lineHeight: getFontSize(initialLineHeights),
+                  }}
+                  animate={{
+                    fontSize: getFontSize(animateFontSizes),
+                    lineHeight: getFontSize(animateLineHeights),
+                  }}
                   transition={{ delay: 1.7, duration: 1.5, ease: "easeInOut" }}
-                  className="text-5xl md:text-[100px] lg:text-[9vw] font-grotesk uppercase leading-[10vw] md:leading-[9vw] lg:leading-[6.8vw]"
+                  className="font-grotesk uppercase"
                 >
                   {text}
                 </motion.h1>
