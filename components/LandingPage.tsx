@@ -53,23 +53,23 @@ function LandingPage({
   const initialFontSizes = {
     lg: "7.8rem",
     md: "5.5rem",
-    sm: "3rem",
+    sm: "4.5rem",
   };
   const animateFontSizes = {
     lg: "9rem",
     md: "6rem",
-    sm: "3.5rem",
+    sm: "5rem",
   };
   // Line heights for each breakpoint
   const initialLineHeights = {
     lg: "5.5rem",
     md: "4rem",
-    sm: "2.5rem",
+    sm: "3.5rem",
   };
   const animateLineHeights = {
     lg: "6.5rem",
     md: "4.5rem",
-    sm: "3rem",
+    sm: "3.75rem",
   };
 
   const getFontSize = (sizes: any) => {
@@ -86,7 +86,7 @@ function LandingPage({
   const imageWidths = {
     lg: "10rem",
     md: "8rem",
-    sm: "4.5rem",
+    sm: "5.5rem",
   };
 
   const getImageWidth = () => {
@@ -108,6 +108,18 @@ function LandingPage({
       </motion.div>
     );
   }
+
+  // Different text arrays based on breakpoint - ONLY change for mobile
+  const getTextArray = () => {
+    if (breakpoint === "sm") {
+      return ["we build", "digital", "presence", "for brands"];
+    } else {
+      // Keep original for md and lg
+      return ["we build", "digital presence", "for brands"];
+    }
+  };
+
+  const textArray = getTextArray();
 
   return (
     <div
@@ -133,10 +145,12 @@ function LandingPage({
       >
         {/* Text Structure */}
         <div className="textstructure mt-40 px-5 lg:px-14">
-          {["we build", "digital presence", "for brands"].map((text, index) => (
+          {textArray.map((text, index) => (
             <div className="masker" key={index}>
               <div className="w-fit flex items-center gap-3">
-                {index === 1 && (
+                {/* Show image after "digital" for mobile, after "digital presence" for larger screens */}
+                {((breakpoint === "sm" && text === "digital") ||
+                  (breakpoint !== "sm" && text === "digital presence")) && (
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: loadingComplete ? getImageWidth() : 0 }}
@@ -145,7 +159,7 @@ function LandingPage({
                       ease: [0.76, 0, 0.24, 1],
                       delay: loadingComplete ? 1 : 0,
                     }}
-                    className="overflow-hidden relative top-1 left-1 lg:top-2 w-[10vw] h-[2.5rem] md:h-[4rem] lg:h-[5.8rem] lg:w-[10rem] rounded-sm lg:rounded-md"
+                    className="overflow-hidden relative top-1 left-1 lg:top-2 w-[10vw] h-[3rem] md:h-[4rem] lg:h-[5.8rem] lg:w-[10rem] rounded-sm lg:rounded-md"
                   >
                     <img
                       src="./nexa.webp"
