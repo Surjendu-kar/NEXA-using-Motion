@@ -15,10 +15,10 @@ function Marquee() {
           transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
           className="flex flex-shrink-0"
         >
-          <h1 className="text-[24vw] leading-[15vw] pb-9 uppercase font-grotesk pr-20">
+          <h1 className="text-[80px] lg:text-[365px] leading-[15vw] pb-3 lg:pb-9 uppercase font-grotesk pr-20">
             Let's build together
           </h1>
-          <h1 className="text-[24vw] leading-[15vw] pb-9 uppercase font-grotesk pr-20">
+          <h1 className="text-[80px] lg:text-[365px] leading-[15vw] pb-3 lg:pb-9 uppercase font-grotesk pr-20">
             Let's build together
           </h1>
         </motion.div>
@@ -28,10 +28,10 @@ function Marquee() {
           transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
           className="flex flex-shrink-0"
         >
-          <h1 className="text-[24vw] leading-[15vw] pb-9 uppercase font-grotesk pr-20">
+          <h1 className="text-[80px] lg:text-[365px] leading-[15vw] pb-3 lg:pb-9 uppercase font-grotesk pr-20">
             Let's build together
           </h1>
-          <h1 className="text-[24vw] leading-[15vw] pb-9 uppercase font-grotesk pr-20">
+          <h1 className="text-[80px] lg:text-[365px] leading-[15vw] pb-3 lg:pb-9 uppercase font-grotesk pr-20">
             Let's build together
           </h1>
         </motion.div>

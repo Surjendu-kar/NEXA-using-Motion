@@ -12,7 +12,7 @@ function About() {
         specialize in web design, development, and digital marketing.
       </h1>
 
-      <div className="pt-10 mt-20  w-full border-t-[1px] border-[#99AD53] flex gap-5">
+      <div className="pt-5 mt-5 lg:pt-10 lg:mt-20  w-full border-t-[1px] border-[#99AD53] flex flex-col md:flex-row gap-5">
         <div className="w-1/2">
           <h1 className="text-[#212121] font-neue text-[3.6vw] ">
             Our Approach:
@@ -23,7 +23,7 @@ function About() {
           </button>
         </div>
 
-        <div className="w-1/2 h-[469px] bg-[#99ad536c] rounded-3xl"></div>
+        <div className="w-full lg:w-1/2 h-[300px] lg:h-[469px] bg-[#99ad536c] rounded-xl lg:rounded-3xl"></div>
       </div>
     </div>
   );
