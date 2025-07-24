@@ -5,16 +5,16 @@ function About() {
     <div
       data-scroll
       data-scroll-speed="-0.02"
-      className="w-full p-5 lg:p-16 bg-[#CDEA68] rounded-tl-md rounded-tr-md lg:rounded-tl-2xl lg:rounded-tr-2xl"
+      className="w-full py-10 lg:py-16 bg-[#CDEA68] rounded-tl-md rounded-tr-md lg:rounded-tl-2xl lg:rounded-tr-2xl"
     >
-      <h1 className="text-[#212121] font-neue text-[3.6vw] leading-none tracking-tight">
+      <h1 className="px-5 lg:px-14 text-[#212121] font-neue text-[30px] lg:text-[55px] leading-none tracking-tight">
         We are a digital agency that helps brands grow and succeed online. We
         specialize in web design, development, and digital marketing.
       </h1>
 
       <div className="pt-5 mt-5 lg:pt-10 lg:mt-20  w-full border-t-[1px] border-[#99AD53] flex flex-col md:flex-row gap-5">
-        <div className="w-1/2">
-          <h1 className="text-[#212121] font-neue text-[3.6vw]">
+        <div className="px-5 lg:px-14 w-full lg:w-1/2">
+          <h1 className="text-[#212121] font-neue text-[30px] lg:text-[55px]">
             Our Approach:
           </h1>
           <button className="uppercase px-5 py-4 mt-2 bg-zinc-800 text-xs lg:text-[15px] rounded-full flex items-center gap-3 lg:gap-10">
@@ -23,7 +23,7 @@ function About() {
           </button>
         </div>
 
-        <div className="w-full lg:w-1/2 h-[300px] lg:h-[469px] bg-[#99ad536c] rounded-xl lg:rounded-3xl overflow-hidden">
+        <div className="lg:mr-14 w-full lg:w-1/2 h-[300px] lg:h-[469px] bg-[#99ad536c] rounded-none lg:rounded-3xl overflow-hidden">
           <img
             src="./nexa.webp"
             alt=""
