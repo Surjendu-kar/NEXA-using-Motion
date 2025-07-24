@@ -14,10 +14,10 @@ function About() {
 
       <div className="pt-5 mt-5 lg:pt-10 lg:mt-20  w-full border-t-[1px] border-[#99AD53] flex flex-col md:flex-row gap-5">
         <div className="w-1/2">
-          <h1 className="text-[#212121] font-neue text-[3.6vw] ">
+          <h1 className="text-[#212121] font-neue text-[3.6vw]">
             Our Approach:
           </h1>
-          <button className="uppercase px-5 py-4 mt-2 bg-zinc-800 text-[15px] rounded-full flex items-center gap-10">
+          <button className="uppercase px-5 py-4 mt-2 bg-zinc-800 text-xs lg:text-[15px] rounded-full flex items-center gap-3 lg:gap-10">
             <span>Learn More</span>
             <div className="w-2 h-2 bg-zinc-100 rounded-full"></div>
           </button>

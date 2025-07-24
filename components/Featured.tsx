@@ -45,16 +45,16 @@ function Featured() {
     },
   ];
   return (
-    <div data-scroll data-scroll-speed="0.1" className="w-full py-20 ">
-      <div className="w-full px-14 border-b-[1px] pb-10 border-zinc-700">
+    <div data-scroll data-scroll-speed="0.1" className="w-full py-2 lg:py-20 ">
+      <div className="w-full px-5 lg:px-14 border-b-[1px] pb-10 border-zinc-700">
         {/*Top heading */}
-        <h1 className="text-[55px] leading-none  font-neue">
+        <h1 className="text-[31px] lg:text-[55px] leading-none  font-neue">
           Featured projects
         </h1>
       </div>
 
       {/* cards */}
-      <div className="cards w-full flex flex-wrap gap-10 px-14 pt-10 relative">
+      <div className="cards w-full flex flex-wrap gap-10 px-5 lg:px-14 pt-10 relative">
         {/* center heading */}
         <h1
           className="absolute flex overflow-hidden text-[#CDEA68] z-[9] text-9xl leading-none font-grotesk left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none h-[115px]"
@@ -86,54 +86,55 @@ function Featured() {
           </AnimatePresence>
         </h1>
 
-        {cardList.map((card, index) => (
-          <div
-            key={index}
-            className="cardcontainer h-[650px] overflow-hidden "
-            style={{ width: "calc(50% - 20px)" }}
-          >
-            <div className="card w-full h-full flex flex-col gap-4 rounded-xl ">
-              {/* title */}
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-zinc-100 rounded-full" />
-                <h1 className="text-[15px] font-neue uppercase">
-                  {card.title}
-                </h1>
-              </div>
+        <div className="flex flex-col md:flex-row flex-wrap gap-10">
+          {cardList.map((card, index) => (
+            <div
+              key={index}
+              className="cardcontainer h-[400px] lg:h-[650px] overflow-hidden w-full md:[width:calc(50%-20px)]"
+            >
+              <div className="card w-full h-full flex flex-col gap-4 rounded-xl ">
+                {/* title */}
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-zinc-100 rounded-full" />
+                  <h1 className="text-[15px] font-neue uppercase">
+                    {card.title}
+                  </h1>
+                </div>
 
-              {/* image */}
-              <motion.div
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className="w-full flex-1 rounded-xl overflow-hidden cursor-pointer"
-                animate={{ scale: hoveredIndex === index ? 0.95 : 1 }}
-                transition={{ ease: "easeInOut", duration: 0.5 }}
-              >
-                <motion.img
-                  animate={{
-                    scale: hoveredIndex === index ? 1.1 : 1,
-                  }}
+                {/* image */}
+                <motion.div
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  className="w-full flex-1 rounded-lg lg:rounded-xl overflow-hidden cursor-pointer"
+                  animate={{ scale: hoveredIndex === index ? 0.95 : 1 }}
                   transition={{ ease: "easeInOut", duration: 0.5 }}
-                  className="w-full h-full object-cover"
-                  src={card.imgSrc}
-                  alt="Featured Project"
-                />
-              </motion.div>
+                >
+                  <motion.img
+                    animate={{
+                      scale: hoveredIndex === index ? 1.1 : 1,
+                    }}
+                    transition={{ ease: "easeInOut", duration: 0.5 }}
+                    className="w-full h-full object-cover"
+                    src={card.imgSrc}
+                    alt="Featured Project"
+                  />
+                </motion.div>
 
-              {/* tags */}
-              <div className="flex items-center gap-2">
-                {card.tags.map((tag, i) => (
-                  <div
-                    key={i}
-                    className="cursor-pointer hover:bg-white hover:text-zinc-900 transition-all duration-300 uppercase font-neue text-[0.9vw] leading-none px-4 py-2 border-[1px] border-zinc-400 rounded-full tracking-wide"
-                  >
-                    {tag}
-                  </div>
-                ))}
+                {/* tags */}
+                <div className="flex items-center gap-1 lg:gap-2">
+                  {card.tags.map((tag, i) => (
+                    <div
+                      key={i}
+                      className="cursor-pointer hover:bg-white hover:text-zinc-900 transition-all duration-300 uppercase font-neue text-[8px] lg:text-[0.9vw] leading-none px-3 lg:px-4 py-2 border-[1px] border-zinc-400 rounded-full tracking-wide"
+                    >
+                      {tag}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

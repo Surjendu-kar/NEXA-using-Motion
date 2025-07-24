@@ -24,7 +24,7 @@ function Page() {
         }
         return prevCount + 1;
       });
-    }, 10);
+    }, 13);
 
     return () => clearInterval(interval);
   }, []);
