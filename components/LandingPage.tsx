@@ -244,7 +244,7 @@ function LandingPage({
                     {text}
                   </div>
                 ))}
-                <div className="start mt-2 md:mt-0 flex items-center gap-2 group cursor-pointer">
+                <div className="start mt-2 md:mt-0 flex items-center gap-2 group cursor-pointer mb-4 md:mb-0">
                   <motion.div
                     initial={{
                       x: "20%",
