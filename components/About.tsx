@@ -5,7 +5,7 @@ function About() {
     <div
       data-scroll
       data-scroll-speed="-0.02"
-      className="w-full p-5 lg:p-16 bg-[#CDEA68] rounded-tl-lg rounded-tr-lg  lg:rounded-tl-2xl lg:rounded-tr-2xl"
+      className="w-full p-5 lg:p-16 bg-[#CDEA68] rounded-tl-md rounded-tr-md lg:rounded-tl-2xl lg:rounded-tr-2xl"
     >
       <h1 className="text-[#212121] font-neue text-[3.6vw] leading-none tracking-tight">
         We are a digital agency that helps brands grow and succeed online. We

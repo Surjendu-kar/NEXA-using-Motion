@@ -36,11 +36,11 @@ function Eyes() {
         data-scroll-speed="-0.8"
         className="relative w-full h-full bg-cover bg-center bg-[url('https://ochi.design/wp-content/uploads/2022/05/Top-Viewbbcbv-1-1440x921.jpg')]"
       >
-        <div className="absolute flex justify-between gap-1 w-1/3 top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] ">
+        <div className="absolute flex justify-between gap-1 w-[90%] lg:w-1/3 top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] ">
           {[1, 2].map((item, index) => (
             <div
               key={index}
-              className="flex items-center justify-center bg-zinc-100 w-[14vw] h-[14vw] rounded-full"
+              className="flex items-center justify-center bg-zinc-100 w-[40vw] h-[40vw] lg:w-[14vw] lg:h-[14vw] rounded-full"
             >
               <div
                 className="relative bg-[#212121] w-3/5 h-3/5 rounded-full transition-transform duration-200 ease-out"

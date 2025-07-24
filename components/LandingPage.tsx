@@ -218,7 +218,7 @@ function LandingPage({
               <div className="absolute bottom-5 left-5 text-zinc-400 text-[14px] lg:text-[16px]">
                 Loading...
               </div>
-              <div className="absolute bottom-5 right-5 text-zinc-400 text-2xl lg:text-4xl font-semibold">
+              <div className="absolute bottom-5 right-5 text-zinc-400 text-3xl lg:text-4xl font-semibold">
                 {count}%
               </div>
             </motion.div>

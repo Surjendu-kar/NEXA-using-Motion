@@ -121,11 +121,11 @@ function Featured() {
                 </motion.div>
 
                 {/* tags */}
-                <div className="flex items-center gap-1 lg:gap-2">
+                <div className="flex flex-wrap items-center gap-1 lg:gap-2">
                   {card.tags.map((tag, i) => (
                     <div
                       key={i}
-                      className="cursor-pointer hover:bg-white hover:text-zinc-900 transition-all duration-300 uppercase font-neue text-[8px] lg:text-[0.9vw] leading-none px-3 lg:px-4 py-2 border-[1px] border-zinc-400 rounded-full tracking-wide"
+                      className="cursor-pointer hover:bg-white hover:text-zinc-900 transition-all duration-300 uppercase font-neue text-[12px] lg:text-[0.9vw] leading-none px-3 lg:px-4 py-2 border-[1px] border-zinc-400 rounded-full tracking-wide"
                     >
                       {tag}
                     </div>

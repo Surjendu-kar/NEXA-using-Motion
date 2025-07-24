@@ -6,7 +6,7 @@ function Marquee() {
     <div
       data-scroll
       data-scroll-speed="0.001"
-      className="w-full py-5 lg:py-10 bg-[#004D43] rounded-tl-lg rounded-tr-lg lg:rounded-tl-2xl lg:rounded-tr-2xl overflow-hidden"
+      className="w-full py-5 lg:py-10 bg-[#004D43] rounded-tl-md rounded-tr-md lg:rounded-tl-2xl lg:rounded-tr-2xl overflow-hidden"
     >
       <div className="text border-t-2 border-b-2 border-zinc-300 flex whitespace-nowrap">
         <motion.div
