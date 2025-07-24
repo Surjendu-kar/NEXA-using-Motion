@@ -1,12 +1,12 @@
 function Footer() {
   return (
-    <div className="w-full h-screen bg-zinc-900 flex p-14">
-      <div className="w-1/2 flex flex-col justify-between">
+    <div className="w-full h-screen bg-zinc-900 flex lg:flex-row flex-col gap-14 lg:gap-0 p-5 lg:p-14">
+      <div className="w-full lg:w-1/2 flex flex-row lg:flex-col justify-between">
         <div className="heading">
           {["Eye-", "Opening"].map((text, index) => (
             <h1
               key={index}
-              className="text-5xl md:text-[100px] lg:text-[9vw] font-grotesk uppercase leading-[10vw] md:leading-[9vw] lg:leading-[7vw]"
+              className="text-6xl md:text-[100px] lg:text-[137px] font-grotesk uppercase leading-[3rem] md:leading-[9vw] lg:leading-[7vw]"
             >
               {text}
             </h1>
@@ -36,8 +36,9 @@ function Footer() {
           </svg>
         </div>
       </div>
-      <div className="w-1/2 flex flex-col justify-between">
-        <h1 className="text-5xl md:text-[100px] lg:text-[9vw] font-grotesk uppercase leading-[10vw] md:leading-[9vw] lg:leading-[7vw]">
+
+      <div className="w-full lg:w-1/2 flex flex-col justify-between gap-5 lg:gap-0">
+        <h1 className="text-6xl md:text-[100px] lg:text-[137px] font-grotesk uppercase leading-[10vw] md:leading-[9vw] lg:leading-[7vw]">
           presentations
         </h1>
         <div className="flex flex-col gap-8 flex-wrap">
@@ -72,12 +73,12 @@ function Footer() {
           </div>
         </div>
 
-        <div className="copyright flex items-center justify-between text-[#919395]">
-          <div className="flex gap-2 ">
+        <div className="copyright flex items-center justify-between text-[#919395] mt-5 lg:mt-0">
+          <div className="flex flex-col lg:flex-row gap-2 text-sm lg:text-md">
             <p>&copy;Nexa 2025</p>{" "}
-            <span className="underline underline-offset-2">Legal Terms</span>
+            <span className="underline underline-offset-2 text-sm lg:text-md">Legal Terms</span>
           </div>
-          <p>&copy; Website by Surjendu.</p>
+          <p className="text-sm lg:text-md">&copy; Website by Surjendu.</p>
         </div>
       </div>
     </div>
