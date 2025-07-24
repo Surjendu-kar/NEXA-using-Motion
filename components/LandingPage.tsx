@@ -86,7 +86,7 @@ function LandingPage({
   const imageWidths = {
     lg: "10rem",
     md: "8rem",
-    sm: "5.5rem",
+    sm: "6rem",
   };
 
   const getImageWidth = () => {
@@ -144,7 +144,7 @@ function LandingPage({
         className="relative bg-zinc-900 text-white pt-1 overflow-hidden"
       >
         {/* Text Structure */}
-        <div className="textstructure mt-40 px-5 lg:px-14">
+        <div className="textstructure mt-52 lg:mt-40 px-5 lg:px-14">
           {textArray.map((text, index) => (
             <div className="masker" key={index}>
               <div className="w-fit flex items-center gap-3">
@@ -159,7 +159,7 @@ function LandingPage({
                       ease: [0.76, 0, 0.24, 1],
                       delay: loadingComplete ? 1 : 0,
                     }}
-                    className="overflow-hidden relative top-1 left-1 lg:top-2 w-[10vw] h-[3rem] md:h-[4rem] lg:h-[5.8rem] lg:w-[10rem] rounded-sm lg:rounded-md"
+                    className="overflow-hidden relative top-1 left-1 lg:top-2 w-[10vw] h-[3.2rem] md:h-[4rem] lg:h-[5.8rem] lg:w-[10rem] rounded-sm lg:rounded-md"
                   >
                     <img
                       src="./nexa.webp"
@@ -196,10 +196,10 @@ function LandingPage({
               transition={{ duration: 0.5 }}
               className="absolute w-full bottom-0"
             >
-              <div className="absolute bottom-5 left-5 text-zinc-400">
+              <div className="absolute bottom-5 left-5 text-zinc-400 text-[14px] lg:text-[16px]">
                 Loading...
               </div>
-              <div className="absolute bottom-5 right-5 text-zinc-400 text-4xl font-semibold">
+              <div className="absolute bottom-5 right-5 text-zinc-400 text-2xl lg:text-4xl font-semibold">
                 {count}%
               </div>
             </motion.div>
@@ -231,17 +231,20 @@ function LandingPage({
                 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: "easeInOut", delay: 1 }}
-                className="flex items-center justify-between py-4 px-14"
+                className="flex flex-col md:flex-row items-center justify-between py-4 px-5 lg:px-14"
               >
                 {[
                   "For startups and established businesses",
                   "From concept to launch",
                 ].map((text, index) => (
-                  <div className="text-[1.1vw] leading-6 font-neue" key={index}>
+                  <div
+                    className="text-[14px] md:text-[16px] lg:text-[17px] leading-6 font-neue"
+                    key={index}
+                  >
                     {text}
                   </div>
                 ))}
-                <div className="start flex items-center gap-2 group cursor-pointer">
+                <div className="start mt-2 md:mt-0 flex items-center gap-2 group cursor-pointer">
                   <motion.div
                     initial={{
                       x: "20%",
@@ -254,7 +257,7 @@ function LandingPage({
                       duration: 0.8,
                       ease: "easeInOut",
                     }}
-                    className="group-hover:bg-white group-hover:text-zinc-900 transition-all duration-300 uppercase font-neue text-[1vw] leading-none px-5 py-2 border-[1px] border-zinc-400 rounded-full tracking-wide"
+                    className="group-hover:bg-white group-hover:text-zinc-900 transition-all duration-300 uppercase font-neue text-[11px] lg:text-[1rem] leading-none px-3 py-2 lg:px-5 lg:py-2 border-[1px] border-zinc-400 rounded-full tracking-wide"
                   >
                     Start The Project
                   </motion.div>
@@ -270,7 +273,7 @@ function LandingPage({
                       duration: 0.8,
                       ease: "easeInOut",
                     }}
-                    className="w-9 h-9 flex items-center justify-center rotate-45 rounded-full border-[1px] border-zinc-400 group-hover:bg-white group-hover:text-zinc-900 transition-all duration-300"
+                    className="w-7 h-7 lg:w-9 lg:h-9 flex items-center justify-center rotate-45 rounded-full border-[1px] border-zinc-400 group-hover:bg-white group-hover:text-zinc-900 transition-all duration-300"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
