@@ -49,6 +49,25 @@ function LandingPage({
 }) {
   const breakpoint = useBreakpoint();
 
+  const initialWidths = {
+    lg: "80%",
+    md: "80%",
+    sm: "85%",
+  };
+
+  const initialHeights = {
+    lg: "80vh",
+    md: "80vh",
+    sm: "85vh",
+  };
+
+  const getDimension = (dimensions: any) => {
+    if (!breakpoint) return dimensions.sm; // mobile-first fallback
+    if (breakpoint === "lg") return dimensions.lg;
+    if (breakpoint === "md") return dimensions.md;
+    return dimensions.sm;
+  };
+
   // Font sizes for each breakpoint
   const initialFontSizes = {
     lg: "7.8rem",
@@ -129,14 +148,14 @@ function LandingPage({
     >
       <motion.div
         initial={{
-          width: "80%",
-          height: "80vh",
+          width: getDimension(initialWidths),
+          height: getDimension(initialHeights),
           borderRadius: "15px",
           opacity: 0.7,
         }}
         animate={{
-          width: loadingComplete ? "100%" : "80%",
-          height: loadingComplete ? "100vh" : "80vh",
+          width: loadingComplete ? "100%" : getDimension(initialWidths),
+          height: loadingComplete ? "100vh" : getDimension(initialHeights),
           borderRadius: loadingComplete ? "0px" : "15px",
           opacity: 1,
         }}
