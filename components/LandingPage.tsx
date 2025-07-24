@@ -145,7 +145,7 @@ function LandingPage({
                       ease: [0.76, 0, 0.24, 1],
                       delay: loadingComplete ? 1 : 0,
                     }}
-                    className="overflow-hidden relative top-1 left-1 lg:top-2 w-[10vw] h-[2.5rem] md:h-[4rem] lg:w-[10rem] lg:h-[5.7vw] rounded-sm lg:rounded-md"
+                    className="overflow-hidden relative top-1 left-1 lg:top-2 w-[10vw] h-[2.5rem] md:h-[4rem] lg:h-[5.8rem] lg:w-[10rem] rounded-sm lg:rounded-md"
                   >
                     <img
                       src="./nexa.webp"

@@ -36,7 +36,7 @@ function Page() {
   }, [loadingComplete]);
 
   return (
-    <div className="w-full min-h-screen bg-zinc-900 text-white">
+    <div className="w-full min-h-screen bg-zinc-900 text-white overflow-hidden">
       {loadingComplete && <Navbar />}
       <LandingPage loadingComplete={loadingComplete} count={count} />
       {loadingComplete && (
