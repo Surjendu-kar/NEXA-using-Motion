@@ -125,7 +125,7 @@ function LandingPage({
     <div
       data-scroll
       data-scroll-speed="-0.5"
-      className="w-full h-[95vh] md:h-screen bg-black flex items-center justify-center"
+      className="w-full h-[93vh] md:h-screen bg-black flex items-center justify-center"
     >
       <motion.div
         initial={{
@@ -244,7 +244,7 @@ function LandingPage({
                     {text}
                   </div>
                 ))}
-                <div className="start mt-2 md:mt-0 flex items-center gap-2 group cursor-pointer mb-5 md:mb-0">
+                <div className="start mt-2 md:mt-0 flex items-center gap-2 group cursor-pointer mb-7 md:mb-0">
                   <motion.div
                     initial={{
                       x: "20%",
