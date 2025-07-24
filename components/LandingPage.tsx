@@ -1,6 +1,5 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
 
 const pathVariants = {
   hidden: { opacity: 0, pathLength: 0 },

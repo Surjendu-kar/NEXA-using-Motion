@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 const pathVariants = {
@@ -18,6 +18,7 @@ const pathVariants = {
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
@@ -36,6 +37,15 @@ function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+  }, []);
+
+  // Close menu on nav item click or window resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 640) setMenuOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const navItems = [
@@ -94,7 +104,31 @@ function Navbar() {
         </svg>
       </div>
 
-      <div className="links flex gap-10 items-center">
+      {/* Hamburger menu for small screens */}
+      <button
+        className="sm:hidden flex flex-col justify-center items-center w-10 h-10 relative z-[1001]"
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        onClick={() => setMenuOpen((prev) => !prev)}
+      >
+        <span
+          className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+            menuOpen ? "rotate-45 translate-y-1.5" : ""
+          }`}
+        ></span>
+        <span
+          className={`block h-0.5 w-6 bg-white my-1 transition-all duration-300 ${
+            menuOpen ? "opacity-0" : ""
+          }`}
+        ></span>
+        <span
+          className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+            menuOpen ? "-rotate-45 -translate-y-1.5" : ""
+          }`}
+        ></span>
+      </button>
+
+      {/* Nav links for large screens */}
+      <div className="links gap-10 items-center hidden sm:flex">
         {navItems.map((item, index) => (
           <motion.a
             key={index}
@@ -130,6 +164,40 @@ function Navbar() {
           </motion.a>
         ))}
       </div>
+
+      {/* Mobile menu overlay */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: "-100vw" }}
+            animate={{ opacity: menuOpen ? 1 : 0, y: menuOpen ? 0 : "-100vw" }}
+            exit={{ opacity: 0, y: "100vw", transition: { delay: 0.4 } }}
+            transition={{ ease: "easeInOut", duration: 0.2 }}
+            className={`fixed inset-0 bg-zinc-900/90 backdrop-blur-md z-[1000] flex flex-col items-center justify-center transition-all duration-300 sm:hidden ${
+              menuOpen
+                ? "opacity-100 pointer-events-auto"
+                : "opacity-0 pointer-events-none"
+            }`}
+            onClick={() => setMenuOpen(false)}
+          >
+            <nav
+              className="flex flex-col gap-8 text-2xl font-neue text-white"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {navItems.map((item, index) => (
+                <a
+                  key={index}
+                  href={`/${item.replace(" ", "-").toLowerCase()}`}
+                  className="text-7xl font-grotesk uppercase leading-[11vw]"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item}
+                </a>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
