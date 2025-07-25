@@ -19,7 +19,7 @@ function LoadingDesign({ pageName }: LoadingDesignProps) {
     // Auto-hide the services page after 3 seconds
     const autoHideTimer = setTimeout(() => {
       setShowServices(false);
-    }, 100000);
+    }, 1500);
 
     // Restore overflow after animation completes
     const overflowTimer = setTimeout(() => {
