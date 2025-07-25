@@ -19,7 +19,7 @@ function LoadingDesign({ pageName }: LoadingDesignProps) {
     // Auto-hide the services page after 3 seconds
     const autoHideTimer = setTimeout(() => {
       setShowServices(false);
-    }, 1500);
+    }, 100000);
 
     // Restore overflow after animation completes
     const overflowTimer = setTimeout(() => {
@@ -72,7 +72,7 @@ function LoadingDesign({ pageName }: LoadingDesignProps) {
   }, []);
 
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative h-[93vh] md:h-screen overflow-hidden">
       <AnimatePresence mode="wait">
         {showServices && (
           <motion.div
@@ -95,18 +95,18 @@ function LoadingDesign({ pageName }: LoadingDesignProps) {
             }}
             className="relative h-full bg-[#18181B] flex items-center"
           >
-            <h1 className="font-grotesk uppercase text-9xl text-white pl-14">
+            <h1 className="font-grotesk uppercase text-7xl lg:text-9xl text-white pl-5 lg:pl-14">
               {pageName}
             </h1>
 
             <div
               ref={eyesContainerRef}
-              className="absolute bottom-5 right-0 w-[180px] h-auto flex justify-center gap-2"
+              className="absolute bottom-5 right-0 w-[130px] lg:w-[180px] h-auto flex justify-center gap-2"
             >
               {[1, 2].map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-center bg-zinc-100 w-20 h-20 lg:w-[3.5vw] lg:h-[3.5vw] rounded-full"
+                  className="flex items-center justify-center bg-zinc-100 w-[3rem] h-[3rem] lg:w-[3.5vw] lg:h-[3.5vw] rounded-full"
                 >
                   <div
                     className="relative bg-[#212121] w-3/5 h-3/5 rounded-full transition-transform duration-200 ease-out"
