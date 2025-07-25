@@ -1,6 +1,10 @@
 import { FaArrowUp } from "react-icons/fa6";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 function About() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div
       data-scroll
@@ -17,9 +21,25 @@ function About() {
           <h1 className="text-[#212121] font-neue text-[30px] lg:text-[55px]">
             Our Approach:
           </h1>
-          <button className="uppercase px-5 py-4 mt-2 bg-zinc-800 text-xs lg:text-[15px] rounded-full flex items-center gap-3 lg:gap-10">
+          <button
+            className="uppercase h-14 w-[12rem] px-5  mt-2 bg-zinc-800 text-xs lg:text-[15px] rounded-full flex items-center justify-between gap-2"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <span>Learn More</span>
-            <div className="w-2 h-2 bg-zinc-100 rounded-full"></div>
+            {!isHovered ? (
+              <motion.div
+                layoutId="hover"
+                className="w-2 h-2  bg-zinc-100 rounded-full"
+              />
+            ) : (
+              <motion.div
+                layoutId="hover"
+                className="bg-white p-2 rounded-full"
+              >
+                <FaArrowUp className="text-zinc-800 transform rotate-45" />
+              </motion.div>
+            )}
           </button>
         </div>
 
