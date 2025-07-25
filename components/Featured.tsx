@@ -1,10 +1,13 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function Featured() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [currentTop, setCurrentTop] = useState<string>("50%");
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
 
   const cardList = [
     {
@@ -44,8 +47,49 @@ function Featured() {
       tags: ["brand identity", "pitch deck"],
     },
   ];
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (
+        hoveredIndex !== null &&
+        cardRefs.current[hoveredIndex] &&
+        cardsContainerRef.current
+      ) {
+        const cardImageElement = cardRefs.current[hoveredIndex];
+        const cardsContainer = cardsContainerRef.current;
+
+        const isSmallScreen = window.innerWidth < 768; // Tailwind's 'md' breakpoint
+
+        if (isSmallScreen) {
+          const cardImageRect = cardImageElement.getBoundingClientRect();
+          const cardsContainerRect = cardsContainer.getBoundingClientRect();
+          const topRelativeToCardsContainer =
+            cardImageRect.top -
+            cardsContainerRect.top +
+            cardImageRect.height / 2;
+          setCurrentTop(`${topRelativeToCardsContainer + 40}px`);
+        } else {
+          const totalRows = Math.ceil(cardList.length / 2);
+          const currentRow = Math.floor(hoveredIndex / 2);
+          const originalTop = ((currentRow + 0.5) / totalRows) * 100;
+          setCurrentTop(`${originalTop}%`);
+        }
+      } else {
+        setCurrentTop("50%");
+      }
+    };
+
+    handleResize(); // Initial calculation
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [hoveredIndex, cardList.length]);
+
   return (
-    <div data-scroll data-scroll-speed="0.1" className="w-full py-2 lg:py-20 ">
+    <div data-scroll data-scroll-speed="0.1" className="w-full py-10 lg:py-20 ">
       <div className="w-full px-5 lg:px-14 border-b-[1px] pb-10 border-zinc-700">
         {/*Top heading */}
         <h1 className="text-[31px] lg:text-[55px] leading-none  font-neue">
@@ -54,19 +98,15 @@ function Featured() {
       </div>
 
       {/* cards */}
-      <div className="cards w-full flex flex-wrap gap-10 px-5 lg:px-14 pt-10 relative">
+      <div
+        ref={cardsContainerRef}
+        className="cards w-full flex flex-wrap gap-10 px-5 lg:px-14 pt-10 relative"
+      >
         {/* center heading */}
         <h1
-          className="absolute flex overflow-hidden text-[#CDEA68] z-[9] text-9xl leading-none font-grotesk left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none h-[115px]"
+          className="absolute flex overflow-hidden text-[#CDEA68] z-[9] text-[3.5rem] lg:text-9xl leading-none font-grotesk left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none h-[135px]"
           style={{
-            top:
-              hoveredIndex !== null
-                ? `${
-                    ((Math.floor(hoveredIndex / 2) + 0.5) /
-                      Math.ceil(cardList.length / 2)) *
-                    100
-                  }%`
-                : "50%",
+            top: currentTop,
           }}
         >
           <AnimatePresence>
@@ -103,6 +143,9 @@ function Featured() {
 
                 {/* image */}
                 <motion.div
+                  ref={(el) => {
+                    cardRefs.current[index] = el;
+                  }}
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   className="w-full flex-1 rounded-lg lg:rounded-xl overflow-hidden cursor-pointer"
