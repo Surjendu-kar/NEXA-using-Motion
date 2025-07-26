@@ -4,27 +4,35 @@ import { motion, AnimatePresence } from "motion/react";
 
 interface LoadingDesignProps {
   pageName: string;
+  onLoadingComplete?: () => void; // Callback when loading is done
+  children?: React.ReactNode; // Content to show after loading
 }
 
-function LoadingDesign({ pageName }: LoadingDesignProps) {
+function LoadingDesign({ pageName, onLoadingComplete, children }: LoadingDesignProps) {
   const [rotate, setRotate] = useState(0);
   const [irisPosition, setIrisPosition] = useState({ x: 0, y: 0 });
   const [showServices, setShowServices] = useState(true);
+  const [showContent, setShowContent] = useState(false);
   const eyesContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Hide overflow during component mount to prevent scrollbar
     document.body.style.overflow = "hidden";
 
-    // Auto-hide the services page after 3 seconds
+    // Auto-hide the services page after 1.5 seconds
     const autoHideTimer = setTimeout(() => {
       setShowServices(false);
+      setShowContent(true); // Show content immediately when loading starts to exit
+      
+      // Restore overflow after both animations complete
+      setTimeout(() => {
+        // This is a fallback in case onAnimationComplete doesn't fire
+        if (document.body.style.overflow !== "auto") {
+          document.body.style.overflow = "auto";
+        }
+        onLoadingComplete?.(); // Call callback if provided
+      }, 1000); // Wait for exit animation to complete
     }, 1500);
-
-    // Restore overflow after animation completes
-    const overflowTimer = setTimeout(() => {
-      document.body.style.overflow = "auto";
-    }, 1000);
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!eyesContainerRef.current) return;
@@ -65,14 +73,13 @@ function LoadingDesign({ pageName }: LoadingDesignProps) {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       clearTimeout(autoHideTimer);
-      clearTimeout(overflowTimer);
       // Restore overflow when component unmounts
       document.body.style.overflow = "auto";
     };
-  }, []);
+  }, [onLoadingComplete]);
 
   return (
-    <div className="relative h-[93vh] md:h-screen overflow-hidden">
+    <div className="relative min-h-screen">
       <AnimatePresence mode="wait">
         {showServices && (
           <motion.div
@@ -93,7 +100,7 @@ function LoadingDesign({ pageName }: LoadingDesignProps) {
               duration: 1,
               ease: "easeInOut",
             }}
-            className="relative h-full bg-[#18181B] flex items-center"
+            className="fixed inset-0 z-50 bg-[#18181B] flex items-center"
           >
             <h1 className="font-grotesk uppercase text-7xl lg:text-9xl text-white pl-5 lg:pl-14">
               {pageName}
@@ -126,6 +133,31 @@ function LoadingDesign({ pageName }: LoadingDesignProps) {
                 </div>
               ))}
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Content appears with push-up effect */}
+      <AnimatePresence>
+        {showContent && (
+          <motion.div
+            initial={{ y: "100vh" }} // Start from bottom of screen
+            animate={{ y: 0 }} // Move to normal position
+            transition={{ 
+              duration: 1, 
+              ease: "easeInOut" // Same easing as loading exit
+            }}
+            onAnimationStart={() => {
+              // Keep overflow hidden during content animation
+              document.body.style.overflow = "hidden";
+            }}
+            onAnimationComplete={() => {
+              // Restore overflow when content animation completes
+              document.body.style.overflow = "auto";
+            }}
+            className="relative z-10 bg-white" // Added bg-white to ensure visibility
+          >
+            {children}
           </motion.div>
         )}
       </AnimatePresence>

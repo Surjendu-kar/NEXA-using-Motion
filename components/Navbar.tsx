@@ -1,5 +1,6 @@
 "use client";
 import { AnimatePresence, motion } from "motion/react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const pathVariants = {
@@ -61,14 +62,14 @@ function Navbar() {
         isScrolled ? "bg-zinc-900/50 backdrop-blur-md" : ""
       } ${isNavbarVisible ? "top-0" : "-top-full"}`}
     >
-      <div className="logo">
+      <Link href={"/"} className="logo">
         <svg
           width="70"
           height="30"
           viewBox="0 0 75 30"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
-          stroke="currentColor"
+          stroke="white"
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -102,7 +103,7 @@ function Navbar() {
             animate="visible"
           />
         </svg>
-      </div>
+      </Link>
 
       {/* Hamburger menu for small screens */}
       <button
@@ -128,7 +129,7 @@ function Navbar() {
       </button>
 
       {/* Nav links for large screens */}
-      <div className="links gap-10 items-center hidden sm:flex">
+      <div className="links gap-10 items-center hidden sm:flex text-white">
         {navItems.map((item, index) => (
           <motion.a
             key={index}
