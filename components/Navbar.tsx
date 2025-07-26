@@ -23,6 +23,7 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
   const pathname = usePathname();
+  const isOurWorksPage = pathname === "/our-works";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -86,7 +87,7 @@ function Navbar() {
           viewBox="0 0 75 30"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
-          stroke="white"
+          stroke={isOurWorksPage ? "black" : "white"}
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -129,24 +130,32 @@ function Navbar() {
         onClick={() => setMenuOpen((prev) => !prev)}
       >
         <span
-          className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+          className={`block h-0.5 w-6 ${
+            isOurWorksPage ? "bg-black" : "bg-white"
+          } transition-all duration-300 ${
             menuOpen ? "rotate-45 translate-y-1.5" : ""
           }`}
         ></span>
         <span
-          className={`block h-0.5 w-6 bg-white my-1 transition-all duration-300 ${
-            menuOpen ? "opacity-0" : ""
-          }`}
+          className={`block h-0.5 w-6 ${
+            isOurWorksPage ? "bg-black" : "bg-white"
+          } my-1 transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
         ></span>
         <span
-          className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+          className={`block h-0.5 w-6 ${
+            isOurWorksPage ? "bg-black" : "bg-white"
+          } transition-all duration-300 ${
             menuOpen ? "-rotate-45 -translate-y-1.5" : ""
           }`}
         ></span>
       </button>
 
       {/* Nav links for large screens */}
-      <div className="links gap-10 items-center hidden sm:flex text-white">
+      <div
+        className={`links gap-10 items-center hidden sm:flex ${
+          isOurWorksPage ? "text-black" : "text-white"
+        }`}
+      >
         {navItems.map((item, index) => {
           const isActive = isActiveRoute(item);
 
@@ -178,7 +187,9 @@ function Navbar() {
                 </motion.span>
               </div>
               <motion.div
-                className="absolute bottom-[-5px] left-0 h-[0.5px] bg-white w-full"
+                className={`absolute bottom-[-5px] left-0 h-[0.5px] ${
+                  isOurWorksPage ? "bg-black" : "bg-white"
+                } w-full`}
                 style={{ originX: 0 }}
                 variants={{
                   rest: { scaleX: isActive ? 1 : 0 },
@@ -199,7 +210,9 @@ function Navbar() {
             animate={{ opacity: menuOpen ? 1 : 0, y: menuOpen ? 0 : "-100vw" }}
             exit={{ opacity: 0, y: "100vw", transition: { delay: 0.4 } }}
             transition={{ ease: "easeInOut", duration: 0.2 }}
-            className={`fixed inset-0 bg-zinc-900/90 backdrop-blur-md z-[1000] flex flex-col items-center justify-center transition-all duration-300 sm:hidden ${
+            className={`fixed inset-0 ${
+              isOurWorksPage ? "bg-white/90" : "bg-zinc-900/90"
+            } backdrop-blur-md z-[1000] flex flex-col items-center justify-center transition-all duration-300 sm:hidden ${
               menuOpen
                 ? "opacity-100 pointer-events-auto"
                 : "opacity-0 pointer-events-none"
@@ -207,7 +220,9 @@ function Navbar() {
             onClick={() => setMenuOpen(false)}
           >
             <nav
-              className="flex flex-col gap-8 text-2xl font-neue text-white"
+              className={`flex flex-col gap-8 text-2xl font-neue ${
+                isOurWorksPage ? "text-black" : "text-white"
+              }`}
               onClick={(e) => e.stopPropagation()}
             >
               {navItems.map((item, index) => {
@@ -219,7 +234,11 @@ function Navbar() {
                     href={`/${item.replace(" ", "-").toLowerCase()}`}
                     className={`text-7xl font-grotesk uppercase leading-[11vw] relative ${
                       isActive
-                        ? "text-white cursor-default"
+                        ? isOurWorksPage
+                          ? "text-black cursor-default"
+                          : "text-white cursor-default"
+                        : isOurWorksPage
+                        ? "text-gray-600 cursor-pointer"
                         : "text-gray-300 cursor-pointer"
                     }`}
                     onClick={(e) => {
@@ -232,7 +251,11 @@ function Navbar() {
                   >
                     {item}
                     {isActive && (
-                      <div className="absolute bottom-[-5px] left-0 h-[0.5px] bg-white w-full" />
+                      <div
+                        className={`absolute bottom-[-5px] left-0 h-[0.5px] ${
+                          isOurWorksPage ? "bg-black" : "bg-white"
+                        } w-full`}
+                      />
                     )}
                   </a>
                 );
