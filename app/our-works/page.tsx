@@ -33,7 +33,7 @@ function OurWorks() {
 
   return (
     <LoadingDesign pageName="Our Works">
-      <div className="bg-[#CDEA68] h-[75vh] relative overflow-hidden">
+      <div className="bg-[#CDEA68] h-[73vh] relative overflow-hidden">
         <Navbar />
 
         {/* Eyes - Lower z-index */}
@@ -64,8 +64,8 @@ function OurWorks() {
 
         {/* Bottom boxes - Higher z-index to appear above eyes */}
         <div className="absolute bottom-0 left-0 right-0 flex flex-col z-20">
-          <div className="w-[80%] bg-[#BFDA62] h-10 rounded-md mx-auto border-b-[1.5px] border-[#A8C94A] shadow-sm"></div>
-          <div className="w-[90%] bg-[#BFDA62] h-10 rounded-md mx-auto shadow-md"></div>
+          <div className="w-[80%] bg-[#BFDA62] h-11 rounded-md mx-auto border-b-[0.25px] border-[#A8C94A] shadow-sm"></div>
+          <div className="w-[90%] bg-[#BFDA62] h-11 rounded-md mx-auto shadow-md"></div>
         </div>
       </div>
     </LoadingDesign>
