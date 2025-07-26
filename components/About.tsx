@@ -22,7 +22,7 @@ function About() {
             Our Approach:
           </h1>
           <button
-            className="uppercase h-14 w-[12rem] px-5  mt-2 bg-zinc-800 text-xs lg:text-[15px] rounded-full flex items-center justify-between gap-2"
+            className="uppercase  h-14 w-[12rem] px-5  mt-2 bg-zinc-800 text-xs lg:text-[15px] rounded-full flex items-center justify-between gap-2"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
