@@ -39,11 +39,11 @@ function OurWorks() {
         <h1 className="absolute font-grotesk text-[137px] text-[#212121] top-28 left-14">Work</h1>
 
         {/* Eyes - Lower z-index */}
-        <div className="absolute flex justify-between gap-1 w-[90%] lg:w-[38rem] -bottom-7 left-1/2 -translate-x-[50%] -translate-y-[0%] z-10">
+        <div className="absolute flex justify-between gap-1 w-[90%] lg:w-[40rem] -bottom-7 left-1/2 -translate-x-[50%] -translate-y-[0%] z-10">
           {[1, 2].map((item, index) => (
             <div
               key={index}
-              className="flex items-center justify-center bg-zinc-100 w-[40vw] h-[40vw] lg:w-[18rem] lg:h-[18rem] rounded-full"
+              className="flex items-center justify-center bg-zinc-100 w-[40vw] h-[40vw] lg:w-[19rem] lg:h-[19rem] rounded-full"
             >
               <div
                 className="relative bg-[#212121] w-3/5 h-3/5 rounded-full transition-transform duration-200 ease-out"
