@@ -22,7 +22,9 @@ function About() {
             Our Approach:
           </h1>
           <button
-            className="uppercase  h-14 w-[12rem] px-5  mt-2 bg-zinc-800 text-xs lg:text-[15px] rounded-full flex items-center justify-between gap-2"
+            className={`uppercase  h-14 w-[12rem] ${
+              !isHovered ? "pl-5 pr-4" : "pl-5 pr-2"
+            }   mt-2 bg-zinc-800 text-xs lg:text-[15px] rounded-full flex items-center justify-between gap-2`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -35,7 +37,7 @@ function About() {
             ) : (
               <motion.div
                 layoutId="hover"
-                className="bg-white p-2 rounded-full"
+                className="bg-white p-3 rounded-full"
               >
                 <FaArrowUp className="text-zinc-800 transform rotate-45" />
               </motion.div>
