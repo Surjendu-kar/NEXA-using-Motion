@@ -1,6 +1,7 @@
 "use client";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const pathVariants = {
@@ -21,6 +22,7 @@ function Navbar() {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,6 +58,21 @@ function Navbar() {
     "insights",
     "contact us",
   ];
+
+  // Helper function to check if current path matches nav item
+  const isActiveRoute = (item: string) => {
+    const itemPath = `/${item.replace(" ", "-").toLowerCase()}`;
+    return pathname === itemPath || (pathname === "/" && item === "home");
+  };
+
+  // Handle navigation click with prevention for same page
+  const handleNavClick = (e: React.MouseEvent, item: string) => {
+    if (isActiveRoute(item)) {
+      e.preventDefault();
+      return false;
+    }
+  };
+
   return (
     <div
       className={`fixed z-[999] w-full px-5 lg:px-14 py-6 flex items-center justify-between transition-all duration-300 ${
@@ -130,40 +147,48 @@ function Navbar() {
 
       {/* Nav links for large screens */}
       <div className="links gap-10 items-center hidden sm:flex text-white">
-        {navItems.map((item, index) => (
-          <motion.a
-            key={index}
-            href={`/${item.replace(" ", "-").toLowerCase()}`}
-            className={`relative text-[1.1vw] font-neue font-normal capitalize ${
-              index === navItems.length - 1 && "ml-32"
-            }`}
-            whileHover="hover"
-            initial="rest"
-          >
-            <div className="overflow-hidden relative">
-              <motion.span
-                className="inline-block"
-                variants={{ rest: { y: 0 }, hover: { y: "-100%" } }}
-                transition={{ ease: "easeInOut", duration: 0.3 }}
-              >
-                {item}
-              </motion.span>
-              <motion.span
-                className="absolute left-0 top-0"
-                variants={{ rest: { y: "100%" }, hover: { y: 0 } }}
-                transition={{ ease: "easeInOut", duration: 0.3 }}
-              >
-                {item}
-              </motion.span>
-            </div>
-            <motion.div
-              className="absolute bottom-[-5px] left-0 h-[1px] bg-white w-full"
-              style={{ originX: 0 }}
-              variants={{ rest: { scaleX: 0 }, hover: { scaleX: 1 } }}
-              transition={{ ease: "easeInOut", duration: 0.4 }}
-            />
-          </motion.a>
-        ))}
+        {navItems.map((item, index) => {
+          const isActive = isActiveRoute(item);
+
+          return (
+            <motion.a
+              key={index}
+              href={`/${item.replace(" ", "-").toLowerCase()}`}
+              className={`relative text-[1.1vw] font-neue font-normal capitalize ${
+                index === navItems.length - 1 && "ml-32"
+              } ${isActive ? "cursor-default" : "cursor-pointer"}`}
+              whileHover={isActive ? "rest" : "hover"}
+              initial="rest"
+              onClick={(e) => handleNavClick(e, item)}
+            >
+              <div className="overflow-hidden relative">
+                <motion.span
+                  className="inline-block"
+                  variants={{ rest: { y: 0 }, hover: { y: "-100%" } }}
+                  transition={{ ease: "easeInOut", duration: 0.3 }}
+                >
+                  {item}
+                </motion.span>
+                <motion.span
+                  className="absolute left-0 top-0"
+                  variants={{ rest: { y: "100%" }, hover: { y: 0 } }}
+                  transition={{ ease: "easeInOut", duration: 0.3 }}
+                >
+                  {item}
+                </motion.span>
+              </div>
+              <motion.div
+                className="absolute bottom-[-5px] left-0 h-[0.5px] bg-white w-full"
+                style={{ originX: 0 }}
+                variants={{
+                  rest: { scaleX: isActive ? 1 : 0 },
+                  hover: { scaleX: 1 },
+                }}
+                transition={{ ease: "easeInOut", duration: 0.4 }}
+              />
+            </motion.a>
+          );
+        })}
       </div>
 
       {/* Mobile menu overlay */}
@@ -185,16 +210,33 @@ function Navbar() {
               className="flex flex-col gap-8 text-2xl font-neue text-white"
               onClick={(e) => e.stopPropagation()}
             >
-              {navItems.map((item, index) => (
-                <a
-                  key={index}
-                  href={`/${item.replace(" ", "-").toLowerCase()}`}
-                  className="text-7xl font-grotesk uppercase leading-[11vw]"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {item}
-                </a>
-              ))}
+              {navItems.map((item, index) => {
+                const isActive = isActiveRoute(item);
+
+                return (
+                  <a
+                    key={index}
+                    href={`/${item.replace(" ", "-").toLowerCase()}`}
+                    className={`text-7xl font-grotesk uppercase leading-[11vw] relative ${
+                      isActive
+                        ? "text-white cursor-default"
+                        : "text-gray-300 cursor-pointer"
+                    }`}
+                    onClick={(e) => {
+                      if (isActive) {
+                        e.preventDefault();
+                        return;
+                      }
+                      setMenuOpen(false);
+                    }}
+                  >
+                    {item}
+                    {isActive && (
+                      <div className="absolute bottom-[-5px] left-0 h-[0.5px] bg-white w-full" />
+                    )}
+                  </a>
+                );
+              })}
             </nav>
           </motion.div>
         )}
