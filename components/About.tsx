@@ -23,7 +23,7 @@ function About() {
           </h1>
           <button
             className={`uppercase  h-14 w-[12rem] ${
-              !isHovered ? "pl-5 pr-4" : "pl-5 pr-2"
+              !isHovered ? "pl-5 pr-6" : "pl-5 pr-2"
             }   mt-2 bg-zinc-800 text-xs lg:text-[15px] rounded-full flex items-center justify-between gap-2`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
