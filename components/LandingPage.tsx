@@ -276,9 +276,12 @@ function LandingPage({
                       duration: 0.8,
                       ease: "easeInOut",
                     }}
-                    className="group-hover:bg-white group-hover:text-zinc-900 transition-all duration-300 uppercase font-neue text-[11px] lg:text-[1rem] leading-none px-3 py-2 lg:px-5 lg:py-2 border-[1px] border-zinc-400 rounded-full tracking-wide"
+                    className="relative overflow-hidden uppercase font-neue text-[11px] lg:text-[1rem] leading-none px-3 py-2 lg:px-5 lg:py-2 border-[1px] border-zinc-400 rounded-full tracking-wide transition-colors duration-300 group-hover:text-zinc-900"
                   >
-                    Start The Project
+                    {/* Background fill animation */}
+                    <div className="absolute inset-0 bg-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out rounded-full"></div>
+                    {/* Text content */}
+                    <span className="relative z-10">Start The Project</span>
                   </motion.div>
                   <motion.div
                     initial={{
@@ -292,8 +295,10 @@ function LandingPage({
                       duration: 0.8,
                       ease: "easeInOut",
                     }}
-                    className="w-7 h-7 lg:w-9 lg:h-9 flex items-center justify-center rotate-45 rounded-full border-[1px] border-zinc-400 group-hover:bg-white group-hover:text-zinc-900 transition-all duration-300"
+                    className="relative overflow-hidden w-7 h-7 lg:w-9 lg:h-9 flex items-center justify-center rotate-45 rounded-full border-[1px] border-zinc-400 transition-colors duration-300 group-hover:text-zinc-900"
                   >
+                    {/* Background fill animation for SVG container */}
+                    <div className="absolute inset-0 bg-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out rounded-full"></div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -304,6 +309,7 @@ function LandingPage({
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
+                      className="relative z-10"
                     >
                       <motion.path
                         variants={pathVariants}
